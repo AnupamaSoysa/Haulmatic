@@ -1,0 +1,63 @@
+<div class="row custom-row">
+  <div class= "col-sm-5 custom-container jumbotron">
+       
+    <form class="form-horizontal">
+        <fieldset>
+          <legend>SignUp</legend>
+ <!--- Email Block -->
+ <div class="form-group">
+  <label for="inputEmail">Email</label>
+  <input type="text" formControlName = "email"
+    id="inputEmail"
+    placeholder="Email">
+<!--- Password Block -->
+<div formGroupName = "password">
+  <div class="form-group">
+    <label for="inputPassword">Password</label>
+    <input type="password" formControlName = "pwd"
+      id="inputPassword"
+      placeholder="Password">
+  </div>
+
+  <div class="form-group">
+    <label for="confirmPassword" >Confirm Password</label>
+    <input type="password" formControlName = "confirmPwd"
+      id="confirmPassword"
+      placeholder="Password">
+  </div>
+</div>
+    </div>
+   <!--- Buttons Block -->
+   <div class="form-group">
+    <button type="reset" class="btn btn-default">Cancel</button>
+    <button type="submit" [disabled] = "!signupForm.valid" class="btn btn-primary">Submit</button>
+</div> 
+<!-- Email error block -->
+<div *ngIf="email.invalid && email.touched"
+class="col-sm-3 text-danger">
+
+<div *ngIf = "email.errors?.required">
+    Email field can't be blank
+</div>
+
+<div *ngIf = "email.errors?.pattern">
+    The email id doesn't seem right
+</div>
+
+</div>      
+
+<!-- Password error block -->
+<div *ngIf="(password.invalid && password.touched)"
+class="col-sm-3 text-danger">
+
+Password needs to be more than 8 characters
+</div>
+
+
+<!--- Log the FormGroup values to see if the binding is working -->
+<p>Form value {{ signupForm.value | json }} </p>
+<p> Form status {{ signupForm.status | json}} </p>
+    </fieldset>
+    </form>
+  </div>
+</div>
